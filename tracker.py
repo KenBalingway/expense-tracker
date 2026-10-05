@@ -1,6 +1,6 @@
-# Expense Tracker - Installment 2
+# Expense Tracker - Installment 3
 # Author: Ken Longanilla Balingway
-# A record of two expenses and calculates the total and average
+# Calculates expenses, tax, total spending, and remaining budget.
 
 print("=" * 40)
 print(f"{'EXPENSE TRACKER':^40}")
@@ -16,22 +16,39 @@ print(f"{'4. Exit':<25}(coming soon)\n")
 name = input("What's your name? ")
 print(f"Welcome {name}, Let's log two expenses.\n")
 
+subTotal = 0
+
 item1 = input("First expense? ")
 amount1 = float(input("Amount? "))
+subTotal += amount1
 
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
+subTotal += amount2
 
 #Calculation
-total = amount1 + amount2
-average = total / 2
+average = subTotal / 2
+
+taxPercent = float(input("Tax rate (%)? "))
+tax = subTotal * (taxPercent / 100)
+
+total = subTotal + tax
+
+budget = float(input("Your budget? "))
+overBudget = total > budget
+
+leftBudget = budget - total
 
 print(f"\n{"-" * 40}")
 print("SUMMARY")
-print(f"{f'- {item1}:':<20}${amount1}")
-print(f"{f'- {item2}:':<20}${amount2}")
-print(f"{'Total spent:':<20}${total}")
-print(f"{'Average:':<20}${average}")
+print(f" - {item1}:\t${amount1}")
+print(f" - {item2}:\t${amount2}")
+print(f"Subtotal:\t${subTotal}")
+print(f"Average:\t${average}")
+print(f"Tax ({taxPercent}%):\t${tax}")
+print(f"Grand Total:\t${total}")
+print(f"Over budget?\t{overBudget}")
+print(f"Left in budget:\t${leftBudget}")
 print("-" * 40)
 
-print("Made by: KEN LONGANILLA BALINGWAY | Installment 2")
+print("Made by: KEN LONGANILLA BALINGWAY | Installment 3")
